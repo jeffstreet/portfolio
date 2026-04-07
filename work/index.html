@@ -27,7 +27,8 @@ Each employer gets a heading with role info, followed by project cards.
 
   {% assign roles = items | where: "type", "role" %}
   {% assign education = items | where: "type", "education" %}
-  {% assign projects = items | where_exp: "item", "item.type != 'role' and item.type != 'education'" %}
+  {% assign non_roles = items | where_exp: "item", "item.type != 'role'" %}
+  {% assign projects = non_roles | where_exp: "item", "item.type != 'education'" %}
 
   <div class="work-employer-group">
     <div class="work-employer-header">
