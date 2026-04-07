@@ -1,0 +1,75 @@
+---
+layout: default
+title: Work
+permalink: /work/
+---
+
+<h1>Work</h1>
+<p class="work-intro">More than 15 years leading small teams to develop hardware/software systems at the forefront of innovation.</p>
+
+{% comment %}
+Define employer display order (reverse chronological by start date).
+Each employer gets a heading with role info, followed by project cards.
+{% endcomment %}
+
+{% assign employers = "fz,ff,jh,nextgenaero,esco,apri,norton,uf,up" | split: "," %}
+
+{% assign employer_names = "Fly ZOOZ,Freefly Systems,Johns Hopkins,NextGen Aeronautics,ESCO,Advanced Projects Research,Norton Motorcycles,University of Florida,University of Portland" | split: "," %}
+
+{% assign employer_locations = "Seattle WA,Woodinville WA,Baltimore MD,Torrance CA,Portland OR,La Verne CA,Donington Park UK,Gainesville FL,Portland OR" | split: "," %}
+
+{% assign employer_dates = "April 2023 - Present,Dec 2020 - Mar 2022,2016 - 2020,2009 - 2014,2008,2007,2005,2006,2001 - 2005" | split: "," %}
+
+{% for i in (0..8) %}
+  {% assign code = employers[i] %}
+  {% assign items = site.work | where: "employer_code", code | sort: "date" | reverse %}
+  {% if items.size > 0 %}
+
+  {% assign roles = items | where: "type", "role" %}
+  {% assign education = items | where: "type", "education" %}
+  {% assign projects = items | where_exp: "item", "item.type != 'role' and item.type != 'education'" %}
+
+  <div class="work-employer-group">
+    <div class="work-employer-header">
+      <h2>{{ employer_names[i] }}</h2>
+      <div class="work-employer-details">
+        {% for role in roles %}
+        <span class="work-role-title">{{ role.title }}</span>
+        {% endfor %}
+        {% for edu in education %}
+        <span class="work-role-title">{{ edu.title }}</span>
+        {% endfor %}
+        <span class="work-location">{{ employer_locations[i] }}</span>
+        <span class="work-dates">{{ employer_dates[i] }}</span>
+      </div>
+      {% for role in roles %}
+      <p class="work-role-summary">{{ role.summary }}</p>
+      {% endfor %}
+      {% for edu in education %}
+      <p class="work-role-summary">{{ edu.summary }}</p>
+      {% endfor %}
+    </div>
+
+    {% if projects.size > 0 %}
+    <div class="work-projects-grid">
+      {% for project in projects %}
+      <a href="{{ project.url | relative_url }}" class="work-project-card">
+        {% if project.image %}
+        <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+        {% endif %}
+        <div class="work-project-card-body">
+          <h3>{{ project.title }}</h3>
+          <div class="work-project-meta">
+            <span class="work-year">{{ project.year }}</span>
+            <span class="work-type-badge work-type-{{ project.type }}">{{ project.type }}</span>
+          </div>
+          <p>{{ project.summary }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  {% endif %}
+{% endfor %}

@@ -1,0 +1,55 @@
+---
+layout: default
+---
+<article class="work-item">
+  <div class="work-header">
+    <h1>{{ page.title }}</h1>
+    <div class="work-meta">
+      <span class="work-employer">{{ page.employer }}</span>
+      <span class="work-year">{{ page.year }}</span>
+      <span class="work-type-badge work-type-{{ page.type }}">{{ page.type }}</span>
+    </div>
+  </div>
+
+  {% if page.video_id %}
+  <div class="video-embed">
+    {% if page.video_platform == "youtube" %}
+    <iframe src="https://www.youtube.com/embed/{{ page.video_id }}" frameborder="0" allowfullscreen></iframe>
+    {% elsif page.video_platform == "vimeo" %}
+    <iframe src="https://player.vimeo.com/video/{{ page.video_id }}" frameborder="0" allowfullscreen></iframe>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if page.image %}
+  <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="work-hero-image">
+  {% endif %}
+
+  <div class="work-content">
+    {{ content }}
+  </div>
+
+  {% if page.tags.size > 0 %}
+  <div class="work-tags">
+    {% for tag in page.tags %}
+    <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% assign related = site.work | where: "employer_code", page.employer_code | where_exp: "item", "item.url != page.url" | sort: "date" | reverse %}
+  {% if related.size > 0 %}
+  <div class="work-related">
+    <h2>More at {{ page.employer }}</h2>
+    <ul class="work-related-list">
+      {% for item in related %}
+      <li>
+        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+        <span class="work-type-badge work-type-{{ item.type }}">{{ item.type }}</span>
+        <span class="work-year">{{ item.year }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</article>

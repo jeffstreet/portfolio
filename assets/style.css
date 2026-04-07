@@ -433,3 +433,262 @@ img {
     margin-left: 0;
   }
 }
+
+/* === Work Section === */
+
+/* Work Index Page */
+.work-intro {
+  font-size: 1.1rem;
+  color: var(--color-muted);
+  margin-bottom: 2.5rem;
+  max-width: var(--content-width);
+  line-height: 1.6;
+}
+
+/* Employer Group */
+.work-employer-group {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.work-employer-group:last-child {
+  border-bottom: none;
+}
+
+.work-employer-header {
+  margin-bottom: 1.5rem;
+}
+
+.work-employer-header h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.work-employer-details {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+}
+
+.work-role-title {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.work-location,
+.work-dates {
+  color: var(--color-muted);
+}
+
+.work-location::before,
+.work-dates::before {
+  content: "\00b7";
+  margin-right: 0.5rem;
+}
+
+.work-role-summary {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+/* Project Cards within Employers */
+.work-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.work-project-card {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.work-project-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.work-project-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.work-project-card-body {
+  padding: 0.75rem 1rem;
+}
+
+.work-project-card-body h3 {
+  font-size: 1rem;
+  margin: 0 0 0.25rem;
+}
+
+.work-project-card-body p {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin: 0.25rem 0 0;
+  line-height: 1.4;
+}
+
+.work-project-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Type Badges */
+.work-type-badge {
+  display: inline-block;
+  padding: 0.1em 0.5em;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.work-type-role {
+  background: #e8f4f8;
+  color: #1a6b8a;
+}
+
+.work-type-project {
+  background: var(--color-surface);
+  color: var(--color-muted);
+}
+
+.work-type-education {
+  background: #f0e8f8;
+  color: #6b1a8a;
+}
+
+.work-type-publication {
+  background: #e8f8e8;
+  color: #1a6b2a;
+}
+
+.work-type-patent {
+  background: #f8f0e8;
+  color: #8a5a1a;
+}
+
+/* Work Year */
+.work-year {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+/* Work Item Detail Page */
+.work-item {
+  max-width: var(--content-width);
+}
+
+.work-header h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.work-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.work-employer {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.work-hero-image {
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+}
+
+.work-content {
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+/* Related Items */
+.work-related {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.work-related h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.work-related-list {
+  list-style: none;
+  padding: 0;
+}
+
+.work-related-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.work-related-list li:last-child {
+  border-bottom: none;
+}
+
+.work-related-list a {
+  font-weight: 500;
+}
+
+/* Work Section Responsive */
+@media (max-width: 640px) {
+  .work-projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .work-employer-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+  }
+
+  .work-location::before,
+  .work-dates::before {
+    content: none;
+  }
+
+  .work-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
