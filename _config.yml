@@ -1,0 +1,27 @@
+title: Jeff Street
+description: Hardware, drones, and things I build
+url: "https://jeffstreet.github.io"
+baseurl: "/portfolio"
+markdown: kramdown
+permalink: /blog/:year/:month/:title/
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: "pages"
+    values:
+      layout: "default"

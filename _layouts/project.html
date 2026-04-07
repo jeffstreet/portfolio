@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<article class="project">
+  <header class="project-header">
+    <h1>{{ page.title }}</h1>
+    <div class="project-meta">
+      {% if page.year %}<span class="project-year">{{ page.year }}</span>{% endif %}
+      {% if page.status %}<span class="project-status">{{ page.status }}</span>{% endif %}
+      {% if page.tags %}
+      <div class="project-tags">
+        {% for tag in page.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if page.summary %}
+  <p class="project-summary">{{ page.summary }}</p>
+  {% endif %}
+
+  <div class="project-content">
+    {{ content }}
+  </div>
+
+  <nav class="project-nav">
+    {% assign sorted = site.projects | sort: 'date' %}
+    {% for proj in sorted %}
+      {% if proj.url == page.url %}
+        {% if forloop.index0 > 0 %}
+          {% assign prev_index = forloop.index0 | minus: 1 %}
+          <a href="{{ sorted[prev_index].url | relative_url }}" class="prev">&larr; {{ sorted[prev_index].title }}</a>
+        {% endif %}
+        {% assign next_index = forloop.index0 | plus: 1 %}
+        {% if next_index < sorted.size %}
+          <a href="{{ sorted[next_index].url | relative_url }}" class="next">{{ sorted[next_index].title }} &rarr;</a>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </nav>
+</article>
